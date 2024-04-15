@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrainReservationModelStoreContainer" CdmEntityContainer="TrainReservationEntities">
+    <EntitySetMapping Name="AdminDetails">
+      <EntityTypeMapping TypeName="TrainReservationModel.AdminDetail">
+        <MappingFragment StoreEntitySet="AdminDetails">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+          <ScalarProperty Name="Admin_Password" ColumnName="Admin_Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Booking_Details">
+      <EntityTypeMapping TypeName="TrainReservationModel.Booking_Details">
+        <MappingFragment StoreEntitySet="Booking_Details">
+          <ScalarProperty Name="PNR_NO" ColumnName="PNR_NO" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+          <ScalarProperty Name="Class_Type" ColumnName="Class_Type" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+          <ScalarProperty Name="NumberofTickets" ColumnName="NumberofTickets" />
+          <ScalarProperty Name="Booking_Date_Time" ColumnName="Booking_Date_Time" />
+          <ScalarProperty Name="Booking_Status" ColumnName="Booking_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CancelTickets">
+      <EntityTypeMapping TypeName="TrainReservationModel.CancelTicket">
+        <MappingFragment StoreEntitySet="CancelTicket">
+          <ScalarProperty Name="Cancel_Date_Time" ColumnName="Cancel_Date_Time" />
+          <ScalarProperty Name="Cancel_ID" ColumnName="Cancel_ID" />
+          <ScalarProperty Name="PNR_No" ColumnName="PNR_No" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+          <ScalarProperty Name="Refund_Amount" ColumnName="Refund_Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainDetails">
+      <EntityTypeMapping TypeName="TrainReservationModel.TrainDetail">
+        <MappingFragment StoreEntitySet="TrainDetails">
+          <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+          <ScalarProperty Name="TrainName" ColumnName="TrainName" />
+          <ScalarProperty Name="Source_Station" ColumnName="Source_Station" />
+          <ScalarProperty Name="Final_Station" ColumnName="Final_Station" />
+          <ScalarProperty Name="TrainStatus" ColumnName="TrainStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="TrainReservationModel.UserDetail">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Class_Type">
+      <EntityTypeMapping TypeName="TrainReservationModel.Class_Type">
+        <MappingFragment StoreEntitySet="Class_Type">
+          <ScalarProperty Name="S_No" ColumnName="S_No" />
+          <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+          <ScalarProperty Name="C1_AC" ColumnName="1-AC" />
+          <ScalarProperty Name="C2_AC" ColumnName="2-AC" />
+          <ScalarProperty Name="SL" ColumnName="SL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketPrices">
+      <EntityTypeMapping TypeName="TrainReservationModel.TicketPrice">
+        <MappingFragment StoreEntitySet="TicketPrice">
+          <ScalarProperty Name="S_No" ColumnName="S_No" />
+          <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+          <ScalarProperty Name="C1_AC_Price" ColumnName="1-AC-Price" />
+          <ScalarProperty Name="C2_AC_Price" ColumnName="2-AC-Price" />
+          <ScalarProperty Name="SL_Price" ColumnName="SL_Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UpdateBooking" FunctionName="TrainReservationModel.Store.UpdateBooking" />
+    <FunctionImportMapping FunctionImportName="UpdateCancelTicket" FunctionName="TrainReservationModel.Store.UpdateCancelTicket" />
+  </EntityContainerMapping>
+</Mapping>

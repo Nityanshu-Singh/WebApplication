@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TrainReservationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminDetails">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="AdminName" Type="varchar" MaxLength="20" />
+          <Property Name="Admin_Password" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Booking_Details">
+          <Key>
+            <PropertyRef Name="PNR_NO" />
+          </Key>
+          <Property Name="PNR_NO" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="UserID" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="TrainNo" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="Class_Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Total_Price" Type="real" />
+          <Property Name="NumberofTickets" Type="int" Nullable="false" />
+          <Property Name="Booking_Date_Time" Type="date" />
+          <Property Name="Booking_Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CancelTicket">
+          <Key>
+            <PropertyRef Name="Cancel_ID" />
+          </Key>
+          <Property Name="Cancel_ID" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PNR_No" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="UserId" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="TrainNo" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="Cancel_Date_Time" Type="date" />
+          <Property Name="Refund_Amount" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TrainReservation.dbo.Class_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Class_Type">
+          <Key>
+            <PropertyRef Name="S_No" />
+            <PropertyRef Name="TrainNo" />
+          </Key>
+          <Property Name="S_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainNo" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="1-AC" Type="int" />
+          <Property Name="2-AC" Type="int" />
+          <Property Name="SL" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TicketPrice">
+          <Key>
+            <PropertyRef Name="S_No" />
+          </Key>
+          <Property Name="S_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainNo" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="1-AC-Price" Type="int" />
+          <Property Name="2-AC-Price" Type="int" />
+          <Property Name="SL_Price" Type="int" />
+        </EntityType>
+        <EntityType Name="TrainDetails">
+          <Key>
+            <PropertyRef Name="TrainNo" />
+          </Key>
+          <Property Name="TrainNo" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="TrainName" Type="varchar" MaxLength="50" />
+          <Property Name="Source_Station" Type="varchar" MaxLength="50" />
+          <Property Name="Final_Station" Type="varchar" MaxLength="50" />
+          <Property Name="TrainStatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Password" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Booking_D__Train__45F365D3">
+          <End Role="TrainDetails" Type="Self.TrainDetails" Multiplicity="0..1" />
+          <End Role="Booking_Details" Type="Self.Booking_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainDetails">
+              <PropertyRef Name="TrainNo" />
+            </Principal>
+            <Dependent Role="Booking_Details">
+              <PropertyRef Name="TrainNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking_D__UserI__44FF419A">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+          <End Role="Booking_Details" Type="Self.Booking_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Booking_Details">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CancelTic__PNR_N__02FC7413">
+          <End Role="Booking_Details" Type="Self.Booking_Details" Multiplicity="0..1" />
+          <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_Details">
+              <PropertyRef Name="PNR_NO" />
+            </Principal>
+            <Dependent Role="CancelTicket">
+              <PropertyRef Name="PNR_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CancelTic__Train__04E4BC85">
+          <End Role="TrainDetails" Type="Self.TrainDetails" Multiplicity="0..1" />
+          <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainDetails">
+              <PropertyRef Name="TrainNo" />
+            </Principal>
+            <Dependent Role="CancelTicket">
+              <PropertyRef Name="TrainNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CancelTic__UserI__03F0984C">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+          <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="CancelTicket">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Class_Typ__Train__3C69FB99">
+          <End Role="TrainDetails" Type="Self.TrainDetails" Multiplicity="1" />
+          <End Role="Class_Type" Type="Self.Class_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainDetails">
+              <PropertyRef Name="TrainNo" />
+            </Principal>
+            <Dependent Role="Class_Type">
+              <PropertyRef Name="TrainNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TicketPri__Train__3E52440B">
+          <End Role="TrainDetails" Type="Self.TrainDetails" Multiplicity="0..1" />
+          <End Role="TicketPrice" Type="Self.TicketPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainDetails">
+              <PropertyRef Name="TrainNo" />
+            </Principal>
+            <Dependent Role="TicketPrice">
+              <PropertyRef Name="TrainNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="UpdateBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainNo" Type="numeric" Mode="In" />
+          <Parameter Name="Class" Type="nvarchar" Mode="In" />
+          <Parameter Name="SeatsBooked" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateCancelTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainNo" Type="numeric" Mode="In" />
+          <Parameter Name="Class" Type="nvarchar" Mode="In" />
+          <Parameter Name="SeatsBooked" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="TrainReservationModelStoreContainer">
+          <EntitySet Name="AdminDetails" EntityType="Self.AdminDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking_Details" EntityType="Self.Booking_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CancelTicket" EntityType="Self.CancelTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainDetails" EntityType="Self.TrainDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class_Type" EntityType="Self.Class_Type" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Class_Type].[S_No] AS [S_No], 
+    [Class_Type].[TrainNo] AS [TrainNo], 
+    [Class_Type].[1-AC] AS [1-AC], 
+    [Class_Type].[2-AC] AS [2-AC], 
+    [Class_Type].[SL] AS [SL]
+    FROM [dbo].[Class_Type] AS [Class_Type]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TicketPrice" EntityType="Self.TicketPrice" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TicketPrice].[S_No] AS [S_No], 
+    [TicketPrice].[TrainNo] AS [TrainNo], 
+    [TicketPrice].[1-AC-Price] AS [1-AC-Price], 
+    [TicketPrice].[2-AC-Price] AS [2-AC-Price], 
+    [TicketPrice].[SL_Price] AS [SL_Price]
+    FROM [dbo].[TicketPrice] AS [TicketPrice]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Booking_D__Train__45F365D3" Association="Self.FK__Booking_D__Train__45F365D3">
+            <End Role="TrainDetails" EntitySet="TrainDetails" />
+            <End Role="Booking_Details" EntitySet="Booking_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking_D__UserI__44FF419A" Association="Self.FK__Booking_D__UserI__44FF419A">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="Booking_Details" EntitySet="Booking_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CancelTic__PNR_N__02FC7413" Association="Self.FK__CancelTic__PNR_N__02FC7413">
+            <End Role="Booking_Details" EntitySet="Booking_Details" />
+            <End Role="CancelTicket" EntitySet="CancelTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CancelTic__Train__04E4BC85" Association="Self.FK__CancelTic__Train__04E4BC85">
+            <End Role="TrainDetails" EntitySet="TrainDetails" />
+            <End Role="CancelTicket" EntitySet="CancelTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CancelTic__UserI__03F0984C" Association="Self.FK__CancelTic__UserI__03F0984C">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="CancelTicket" EntitySet="CancelTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Class_Typ__Train__3C69FB99" Association="Self.FK__Class_Typ__Train__3C69FB99">
+            <End Role="TrainDetails" EntitySet="TrainDetails" />
+            <End Role="Class_Type" EntitySet="Class_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TicketPri__Train__3E52440B" Association="Self.FK__TicketPri__Train__3E52440B">
+            <End Role="TrainDetails" EntitySet="TrainDetails" />
+            <End Role="TicketPrice" EntitySet="TicketPrice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrainReservationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminDetail">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="AdminName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Admin_Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Booking_Details">
+          <Key>
+            <PropertyRef Name="PNR_NO" />
+          </Key>
+          <Property Name="PNR_NO" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="UserID" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="TrainNo" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="Class_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Total_Price" Type="Single" />
+          <Property Name="NumberofTickets" Type="Int32" Nullable="false" />
+          <Property Name="Booking_Date_Time" Type="DateTime" Precision="0" />
+          <Property Name="Booking_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TrainDetail" Relationship="Self.FK__Booking_D__Train__45F365D3" FromRole="Booking_Details" ToRole="TrainDetails" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__Booking_D__UserI__44FF419A" FromRole="Booking_Details" ToRole="UserDetails" />
+          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__PNR_N__70DDC3D8" FromRole="Booking_Details" ToRole="CancelTicket" />
+        </EntityType>
+        <EntityType Name="CancelTicket">
+          <Key>
+            <PropertyRef Name="Cancel_ID" />
+          </Key>
+          <Property Name="Cancel_ID" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PNR_No" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="UserId" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="TrainNo" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="Refund_Amount" Type="Int32" />
+          <NavigationProperty Name="Booking_Details" Relationship="Self.FK__CancelTic__PNR_N__70DDC3D8" FromRole="CancelTicket" ToRole="Booking_Details" />
+          <NavigationProperty Name="TrainDetail" Relationship="Self.FK__CancelTic__Train__72C60C4A" FromRole="CancelTicket" ToRole="TrainDetails" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__CancelTic__UserI__71D1E811" FromRole="CancelTicket" ToRole="UserDetails" />
+          <Property Name="Cancel_Date_Time" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="TrainDetail">
+          <Key>
+            <PropertyRef Name="TrainNo" />
+          </Key>
+          <Property Name="TrainNo" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="TrainName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Source_Station" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Final_Station" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TrainStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Booking_Details" Relationship="Self.FK__Booking_D__Train__45F365D3" FromRole="TrainDetails" ToRole="Booking_Details" />
+          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__Train__72C60C4A" FromRole="TrainDetails" ToRole="CancelTicket" />
+          <NavigationProperty Name="Class_Type" Relationship="Self.FK__Class_Typ__Train__3C69FB99" FromRole="TrainDetails" ToRole="Class_Type" />
+          <NavigationProperty Name="TicketPrices" Relationship="Self.FK__TicketPri__Train__3E52440B" FromRole="TrainDetails" ToRole="TicketPrice" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Booking_Details" Relationship="Self.FK__Booking_D__UserI__44FF419A" FromRole="UserDetails" ToRole="Booking_Details" />
+          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__UserI__71D1E811" FromRole="UserDetails" ToRole="CancelTicket" />
+        </EntityType>
+        <EntityType Name="Class_Type">
+          <Key>
+            <PropertyRef Name="S_No" />
+            <PropertyRef Name="TrainNo" />
+          </Key>
+          <Property Name="S_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainNo" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="C1_AC" Type="Int32" />
+          <Property Name="C2_AC" Type="Int32" />
+          <Property Name="SL" Type="Int32" />
+          <NavigationProperty Name="TrainDetail" Relationship="Self.FK__Class_Typ__Train__3C69FB99" FromRole="Class_Type" ToRole="TrainDetails" />
+        </EntityType>
+        <EntityType Name="TicketPrice">
+          <Key>
+            <PropertyRef Name="S_No" />
+          </Key>
+          <Property Name="S_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainNo" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="C1_AC_Price" Type="Int32" />
+          <Property Name="C2_AC_Price" Type="Int32" />
+          <Property Name="SL_Price" Type="Int32" />
+          <NavigationProperty Name="TrainDetail" Relationship="Self.FK__TicketPri__Train__3E52440B" FromRole="TicketPrice" ToRole="TrainDetails" />
+        </EntityType>
+        <Association Name="FK__Booking_D__Train__45F365D3">
+          <End Role="TrainDetails" Type="Self.TrainDetail" Multiplicity="0..1" />
+          <End Role="Booking_Details" Type="Self.Booking_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainDetails">
+              <PropertyRef Name="TrainNo" />
+            </Principal>
+            <Dependent Role="Booking_Details">
+              <PropertyRef Name="TrainNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking_D__UserI__44FF419A">
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
+          <End Role="Booking_Details" Type="Self.Booking_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Booking_Details">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CancelTic__PNR_N__70DDC3D8">
+          <End Role="Booking_Details" Type="Self.Booking_Details" Multiplicity="0..1" />
+          <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_Details">
+              <PropertyRef Name="PNR_NO" />
+            </Principal>
+            <Dependent Role="CancelTicket">
+              <PropertyRef Name="PNR_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CancelTic__Train__72C60C4A">
+          <End Role="TrainDetails" Type="Self.TrainDetail" Multiplicity="0..1" />
+          <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainDetails">
+              <PropertyRef Name="TrainNo" />
+            </Principal>
+            <Dependent Role="CancelTicket">
+              <PropertyRef Name="TrainNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CancelTic__UserI__71D1E811">
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
+          <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="CancelTicket">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Class_Typ__Train__3C69FB99">
+          <End Role="TrainDetails" Type="Self.TrainDetail" Multiplicity="1" />
+          <End Role="Class_Type" Type="Self.Class_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainDetails">
+              <PropertyRef Name="TrainNo" />
+            </Principal>
+            <Dependent Role="Class_Type">
+              <PropertyRef Name="TrainNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TicketPri__Train__3E52440B">
+          <End Role="TrainDetails" Type="Self.TrainDetail" Multiplicity="0..1" />
+          <End Role="TicketPrice" Type="Self.TicketPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainDetails">
+              <PropertyRef Name="TrainNo" />
+            </Principal>
+            <Dependent Role="TicketPrice">
+              <PropertyRef Name="TrainNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TrainReservationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminDetails" EntityType="Self.AdminDetail" />
+          <EntitySet Name="Booking_Details" EntityType="Self.Booking_Details" />
+          <EntitySet Name="CancelTickets" EntityType="Self.CancelTicket" />
+          <EntitySet Name="TrainDetails" EntityType="Self.TrainDetail" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+          <EntitySet Name="Class_Type" EntityType="Self.Class_Type" />
+          <EntitySet Name="TicketPrices" EntityType="Self.TicketPrice" />
+          <AssociationSet Name="FK__Booking_D__Train__45F365D3" Association="Self.FK__Booking_D__Train__45F365D3">
+            <End Role="TrainDetails" EntitySet="TrainDetails" />
+            <End Role="Booking_Details" EntitySet="Booking_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking_D__UserI__44FF419A" Association="Self.FK__Booking_D__UserI__44FF419A">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="Booking_Details" EntitySet="Booking_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CancelTic__PNR_N__70DDC3D8" Association="Self.FK__CancelTic__PNR_N__70DDC3D8">
+            <End Role="Booking_Details" EntitySet="Booking_Details" />
+            <End Role="CancelTicket" EntitySet="CancelTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CancelTic__Train__72C60C4A" Association="Self.FK__CancelTic__Train__72C60C4A">
+            <End Role="TrainDetails" EntitySet="TrainDetails" />
+            <End Role="CancelTicket" EntitySet="CancelTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CancelTic__UserI__71D1E811" Association="Self.FK__CancelTic__UserI__71D1E811">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="CancelTicket" EntitySet="CancelTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Class_Typ__Train__3C69FB99" Association="Self.FK__Class_Typ__Train__3C69FB99">
+            <End Role="TrainDetails" EntitySet="TrainDetails" />
+            <End Role="Class_Type" EntitySet="Class_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TicketPri__Train__3E52440B" Association="Self.FK__TicketPri__Train__3E52440B">
+            <End Role="TrainDetails" EntitySet="TrainDetails" />
+            <End Role="TicketPrice" EntitySet="TicketPrices" />
+          </AssociationSet>
+          <FunctionImport Name="UpdateBooking">
+            <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
+            <Parameter Name="Class" Mode="In" Type="String" />
+            <Parameter Name="SeatsBooked" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateCancelTicket">
+            <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
+            <Parameter Name="Class" Mode="In" Type="String" />
+            <Parameter Name="SeatsBooked" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TrainReservationModelStoreContainer" CdmEntityContainer="TrainReservationEntities">
+          <EntitySetMapping Name="AdminDetails">
+            <EntityTypeMapping TypeName="TrainReservationModel.AdminDetail">
+              <MappingFragment StoreEntitySet="AdminDetails">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="Admin_Password" ColumnName="Admin_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Booking_Details">
+            <EntityTypeMapping TypeName="TrainReservationModel.Booking_Details">
+              <MappingFragment StoreEntitySet="Booking_Details">
+                <ScalarProperty Name="PNR_NO" ColumnName="PNR_NO" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="Class_Type" ColumnName="Class_Type" />
+                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+                <ScalarProperty Name="NumberofTickets" ColumnName="NumberofTickets" />
+                <ScalarProperty Name="Booking_Date_Time" ColumnName="Booking_Date_Time" />
+                <ScalarProperty Name="Booking_Status" ColumnName="Booking_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CancelTickets">
+            <EntityTypeMapping TypeName="TrainReservationModel.CancelTicket">
+              <MappingFragment StoreEntitySet="CancelTicket">
+                <ScalarProperty Name="Cancel_Date_Time" ColumnName="Cancel_Date_Time" />
+                <ScalarProperty Name="Cancel_ID" ColumnName="Cancel_ID" />
+                <ScalarProperty Name="PNR_No" ColumnName="PNR_No" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="Refund_Amount" ColumnName="Refund_Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainDetails">
+            <EntityTypeMapping TypeName="TrainReservationModel.TrainDetail">
+              <MappingFragment StoreEntitySet="TrainDetails">
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="TrainName" ColumnName="TrainName" />
+                <ScalarProperty Name="Source_Station" ColumnName="Source_Station" />
+                <ScalarProperty Name="Final_Station" ColumnName="Final_Station" />
+                <ScalarProperty Name="TrainStatus" ColumnName="TrainStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="TrainReservationModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Class_Type">
+            <EntityTypeMapping TypeName="TrainReservationModel.Class_Type">
+              <MappingFragment StoreEntitySet="Class_Type">
+                <ScalarProperty Name="S_No" ColumnName="S_No" />
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="C1_AC" ColumnName="1-AC" />
+                <ScalarProperty Name="C2_AC" ColumnName="2-AC" />
+                <ScalarProperty Name="SL" ColumnName="SL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketPrices">
+            <EntityTypeMapping TypeName="TrainReservationModel.TicketPrice">
+              <MappingFragment StoreEntitySet="TicketPrice">
+                <ScalarProperty Name="S_No" ColumnName="S_No" />
+                <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="C1_AC_Price" ColumnName="1-AC-Price" />
+                <ScalarProperty Name="C2_AC_Price" ColumnName="2-AC-Price" />
+                <ScalarProperty Name="SL_Price" ColumnName="SL_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UpdateBooking" FunctionName="TrainReservationModel.Store.UpdateBooking" />
+          <FunctionImportMapping FunctionImportName="UpdateCancelTicket" FunctionName="TrainReservationModel.Store.UpdateCancelTicket" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
