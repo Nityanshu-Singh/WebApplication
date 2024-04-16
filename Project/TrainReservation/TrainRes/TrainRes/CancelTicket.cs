@@ -18,8 +18,8 @@ namespace TrainRes
         public Nullable<decimal> PNR_No { get; set; }
         public Nullable<decimal> UserId { get; set; }
         public Nullable<decimal> TrainNo { get; set; }
-        public Nullable<int> Refund_Amount { get; set; }
         public Nullable<System.DateTime> Cancel_Date_Time { get; set; }
+        public Nullable<double> Refund_Amount { get; set; }
     
         public virtual Booking_Details Booking_Details { get; set; }
         public virtual TrainDetail TrainDetail { get; set; }

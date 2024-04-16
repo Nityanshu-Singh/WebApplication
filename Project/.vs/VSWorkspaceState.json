@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\TrainReservation",
+    "\\TrainReservation\\TrainRes",
+    "\\TrainReservation\\TrainRes\\TrainRes",
+    "\\TrainReservation\\TrainRes\\TrainRes\\BusinessLayer",
+    "\\TrainReservation\\TrainRes\\TrainRes\\BusinessLayer\\User"
   ],
+  "SelectedNode": "\\TrainReservation\\TrainRes\\TrainRes\\BusinessLayer\\User\\user.cs",
   "PreviewInSolutionExplorer": false
 }

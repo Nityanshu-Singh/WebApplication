@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TrainReservationModelStoreContainer" CdmEntityContainer="TrainReservationEntities">
+  <EntityContainerMapping StorageEntityContainer="TrainReservationModelStoreContainer" CdmEntityContainer="TrainReservationEntities1">
     <EntitySetMapping Name="AdminDetails">
       <EntityTypeMapping TypeName="TrainReservationModel.AdminDetail">
         <MappingFragment StoreEntitySet="AdminDetails">
@@ -27,11 +27,11 @@
     <EntitySetMapping Name="CancelTickets">
       <EntityTypeMapping TypeName="TrainReservationModel.CancelTicket">
         <MappingFragment StoreEntitySet="CancelTicket">
-          <ScalarProperty Name="Cancel_Date_Time" ColumnName="Cancel_Date_Time" />
           <ScalarProperty Name="Cancel_ID" ColumnName="Cancel_ID" />
           <ScalarProperty Name="PNR_No" ColumnName="PNR_No" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+          <ScalarProperty Name="Cancel_Date_Time" ColumnName="Cancel_Date_Time" />
           <ScalarProperty Name="Refund_Amount" ColumnName="Refund_Amount" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -79,6 +79,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddclassFair" FunctionName="TrainReservationModel.Store.AddclassFair" />
+    <FunctionImportMapping FunctionImportName="AddclassPrice" FunctionName="TrainReservationModel.Store.AddclassPrice" />
+    <FunctionImportMapping FunctionImportName="AddclassSeats" FunctionName="TrainReservationModel.Store.AddclassSeats" />
     <FunctionImportMapping FunctionImportName="UpdateBooking" FunctionName="TrainReservationModel.Store.UpdateBooking" />
     <FunctionImportMapping FunctionImportName="UpdateCancelTicket" FunctionName="TrainReservationModel.Store.UpdateCancelTicket" />
   </EntityContainerMapping>

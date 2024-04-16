@@ -10,10 +10,11 @@ namespace TrainRes.BusinessLayer.User
     {
         static int tktprc = 0;
         static int trNo;
-        static TrainReservationEntities Rb = new TrainReservationEntities();
+        static TrainReservationEntities1 Rb = new TrainReservationEntities1();
         static string cls;
         static int ttltick;
         static int uid;
+        static int age;
         
 
         public static void UserLogin()
@@ -35,8 +36,11 @@ namespace TrainRes.BusinessLayer.User
                 Console.WriteLine("Enter UserId: ");
                 uid = int.Parse(Console.ReadLine()); 
                 us.UserID = uid;
-                Console.WriteLine("Enter User Name: ");
+                Console.WriteLine("Enter Your Name: ");
                 us.UserName = Console.ReadLine();
+                Console.WriteLine("Enter Your Age: ");
+                age = int.Parse(Console.ReadLine());
+                us.Age = age;
                 Console.WriteLine("Enter Your Password: ");
                 us.Password = Console.ReadLine();
 
@@ -72,54 +76,60 @@ namespace TrainRes.BusinessLayer.User
         }
         public static void UserOptions()
         {
-            Console.Write("\t\t****************************************************************************");
-            Console.WriteLine("\t\t\t\t\t\t\t\tWelcome To User Menu");
-            Console.WriteLine("\t\t****************************************************************************");
-            Console.WriteLine("\t\tPress 1 for 'Book Ticket' :-");
-            Console.WriteLine("\t\tPress 2 for 'Cancel Ticket' :- ");
-            Console.WriteLine("\t\tPress 3 for 'Show Booking Details' :- ");
-            Console.WriteLine("\t\tPress 4 for 'Show Cancellation Details' :- ");
-            Console.WriteLine("\t\tPress 5 for 'Exit' :-");
-            Console.Write("YOUR OPTION CHOICE :- ");
-            int n = int.Parse(Console.ReadLine());
-            switch (n)
+            bool flag = true;
+
+            while (flag)
             {
-                case 1:
-                    {
-                        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                        BookTicket(uid);
-                        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine("\t\t      Welcome To User Menu     ");
+                Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine("\t\t1. Book Ticket");
+                Console.WriteLine("\t\t2. Cancel Ticket");
+                Console.WriteLine("\t\t3. Show Booking Details");
+                Console.WriteLine("\t\t4. Show Cancellation Details");
+                Console.WriteLine("\t\t5. Exit");
+                Console.Write("\t\tEnter your choice: ");
+                int n = int.Parse(Console.ReadLine());
+                switch (n)
+                {
+                    case 1:
+                        {
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            BookTicket(uid);
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            break;
+                        }
+                    case 2:
+                        {
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            CanceledTicket();
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            break;
+                        }
+                    case 3:
+                        {
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            ShowBookedTicket(uid);
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            break;
+                        }
+                    case 4:
+                        {
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            CanceledTicket(uid);
+                            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                            break;
+                        }
+                    case 5:
+                        {
+                            flag = false;
+                            break;
+                        }
+                    default:
+                        Console.WriteLine("Enter the Valid Number");
+                        
                         break;
-                    }
-                case 2:
-                    {
-                        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                        CanceledTicket();
-                        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                        break;
-                    }
-                case 3:
-                    {
-                        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                        ShowBookedTicket(uid);
-                        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                        break;
-                    }
-                case 4:
-                    {
-                        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                        CanceledTicket(uid);
-                        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                        break;
-                    }
-                case 5:
-                    {
-                        break;
-                    }
-                default:
-                    Console.WriteLine("Enter the Valid Number");
-                    UserOptions();
-                    break;
+                }
             }
 
         }
@@ -128,19 +138,20 @@ namespace TrainRes.BusinessLayer.User
         {
             Console.WriteLine();
             Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine("\t\t\t\t---Train Details---");
+            Console.WriteLine("\t\t\t\t---Active Train Details---");
             Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-           
-            var trains = Rb.TrainDetails.Where(t => t.TrainStatus == "Active").ToList();
-            int ct = 1;
-            Console.WriteLine($"->\tTrain No.\t\tTrain Name\t\tSource Station\t\tFinal Station");
-            foreach (var train in trains)
-            {
-                Console.WriteLine($"{ct}\t{train.TrainNo}\t\t\t{train.TrainName}\t\t{train.Source_Station}\t{train.Final_Station}");
-                ct++;
 
+            var activeTrains = Rb.TrainDetails.Where(t => t.TrainStatus == "Active").ToList();
+            int count = 1;
+            Console.WriteLine($"S.no\tTrain No.\t\tTrain Name\t\t\tSource Station\t\tFinal Station");
+            foreach (var train in activeTrains)
+            {
+                Console.WriteLine($"{count}\t{train.TrainNo,-12}\t{train.TrainName,-25}\t{train.Source_Station,-20}\t{train.Final_Station,-20}");
+                count++;
             }
+
             Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
         }
         public static void BookTicket(int uid)    // we can add status booked or cancelled....????
         {
@@ -175,15 +186,13 @@ namespace TrainRes.BusinessLayer.User
                 Rb.SaveChanges();
 
                 Rb.UpdateBooking(trNo, cls, ttltick);   // call procedure to update the seats...
-                Console.WriteLine("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
-                Console.WriteLine("\t\t----Your Booking Details----");
-                Console.WriteLine("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*\n");
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine("\t\t\t\t----Your Booking Details----");
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                 Console.WriteLine("------------------------------------------------------------------------------------------------");
-                Console.WriteLine($"User ID: {uid} PNR No: {PNRNo} Booking Date Time: {bt.Booking_Date_Time} Train Number: {trNo}");
-                Console.WriteLine($"Class: {cls} Number of Tickets: {ttltick} Total Fare: {tktprc} Status: Booked");
-                Console.WriteLine("-------------------------------------------------------------------------------------------------");
-
-
+                Console.WriteLine($"| User ID: {uid,-10} | PNR No: {PNRNo,-10} | Booking Date Time: {bt.Booking_Date_Time,-20} | Train Number: {trNo,-10} |");
+                Console.WriteLine($"| Class: {cls,-9} | Number of Tickets: {ttltick,-10} | Total Ticket Price: {tktprc,-15} | Status: Booked |");
+                Console.WriteLine("------------------------------------------------------------------------------------------------");
 
             }
             else if (res == 'N' || res == 'n')
@@ -196,6 +205,7 @@ namespace TrainRes.BusinessLayer.User
         {
             
             Booking_Details bt = new Booking_Details();
+            here:
             Console.Write("Enter Train Number You want to Book:  ");
             trNo = int.Parse(Console.ReadLine());
 
@@ -203,27 +213,35 @@ namespace TrainRes.BusinessLayer.User
             var trSeat = Rb.Class_Type.FirstOrDefault(t => t.TrainNo == trNo);
             var seatPrice = Rb.TicketPrices.FirstOrDefault(t => t.TrainNo == trNo);
 
-            if (trSeat != null)
+            var trSeat1 = Rb.TrainDetails.Where(t => t.TrainNo == trNo && t.TrainStatus == "Active").FirstOrDefault();
+            if (trSeat1 != null)
             {
-                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                Console.WriteLine("\t\tTicket Prices of Train Class");
-                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                Console.WriteLine($"\tYou Selected Train Number: {trSeat.TrainNo}\n");
-                Console.WriteLine("\tClass    : Seat Available    : Ticket Price         ");
-                Console.WriteLine($"\t1 AC       : {trSeat.C1_AC}               : {seatPrice.C1_AC_Price}");
-                Console.WriteLine($"\t2 AC       : {trSeat.C2_AC}               : {seatPrice.C2_AC_Price}");
-                Console.WriteLine($"\tSleeper    : {trSeat.SL}               : {seatPrice.SL_Price}");
-                Console.WriteLine("\t---------Select Class You Want to Book Your Seat----------");
-                Console.WriteLine("\tPress 1 for 1AC\n\tPress 2 for 2AC\n\tPress 3 for SL");
+                Console.WriteLine("\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine("\t\t\tTicket Prices by Train Class");
+                Console.WriteLine("\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine($"\tSelected Train Number: {trSeat.TrainNo}\n");
+
+                Console.WriteLine("\t-----------------------------------------------------------");
+                Console.WriteLine("\t| Class      | Seats Available | Ticket Price             |");
+                Console.WriteLine("\t-----------------------------------------------------------");
+                Console.WriteLine($"\t| 1. 1AC     | {trSeat.C1_AC,-15} | {seatPrice.C1_AC_Price,-25} |");
+                Console.WriteLine($"\t| 2. 2AC     | {trSeat.C2_AC,-15} | {seatPrice.C2_AC_Price,-25} |");
+                Console.WriteLine($"\t| 3. Sleeper | {trSeat.SL,-15} | {seatPrice.SL_Price,-25} |");
+                Console.WriteLine("\t-----------------------------------------------------------");
+                Console.WriteLine("\t--- Please Select the Class You Want to Book Your Seat ---");
+                Console.WriteLine("\tPress 1 for 1AC\n\tPress 2 for 2AC\n\tPress 3 for Sleeper");
+
+
 
             }
             else
             {
                 Console.WriteLine("No Train Found.. Please check the train Number");
+                goto here;
             }
             // Calculate Ticket Price....
 
-            Console.Write("Type Class: ");
+            Console.Write("Press for choice for chooose Class Type: ");
             cls = Console.ReadLine();
             Console.Write("Enter the Number of Tickets you want to book: ");
             ttltick = int.Parse(Console.ReadLine());          // number of seats...
@@ -241,7 +259,7 @@ namespace TrainRes.BusinessLayer.User
             }
 
 
-            Console.WriteLine("Your Total Ticket Price is: " + tktprc);
+            Console.WriteLine("Your Total Ticket Price is:Rs." + tktprc);
 
         }
 
@@ -267,7 +285,7 @@ namespace TrainRes.BusinessLayer.User
 
 
                 Console.WriteLine($"Your Refunded Amount will be: {ct.Refund_Amount} After Rs.120 Deduction");
-                Console.WriteLine("Press Y to Continue and N to exit");
+                Console.WriteLine("Press Y to Cancel Ticket and N to exit");
                 char res = char.Parse(Console.ReadLine());
                 if (res == 'Y' || res == 'y')
                 {
@@ -292,7 +310,7 @@ namespace TrainRes.BusinessLayer.User
             }
             else
             {
-                Console.WriteLine("No Book ID Found....");
+                Console.WriteLine("No PNR No. Found....");
             }
         }
 
@@ -306,9 +324,12 @@ namespace TrainRes.BusinessLayer.User
                 foreach (var bt in booked_tkt)
                 {
                     Console.WriteLine("\n-----------------------------------------------------------------------------------------------");
-                    Console.WriteLine($"Book ID: {bt.PNR_NO}\t\tTrain No: {bt.TrainNo}\t\tBooking Date&Time :{bt.Booking_Date_Time}\n" +
-                        $"Source: {bt.TrainDetail.Source_Station}\tDestination: {bt.TrainDetail.Final_Station}\nTotal Fare: {bt.Total_Price}\t Status: {bt.Booking_Status}");
+                    Console.WriteLine($"Booking Details:");
+                    Console.WriteLine($"  Book ID: {bt.PNR_NO}\t\tTrain No: {bt.TrainNo}\t\tBooking Date & Time: {bt.Booking_Date_Time}\n" +
+                        $"  Source Station: {bt.TrainDetail.Source_Station}\tFinal Station: {bt.TrainDetail.Final_Station}\n" +
+                        $"  Total Fare: {bt.Total_Price}\t\tStatus: {bt.Booking_Status}");
                     Console.WriteLine("-------------------------------------------------------------------------------------------------\n");
+
                 }
             }
             else
@@ -326,9 +347,12 @@ namespace TrainRes.BusinessLayer.User
                 foreach (var bt in cancel_tkt)
                 {
                     Console.WriteLine("\n---------------------------------------------------------------------------------------------------");
-                    Console.WriteLine($"Cancel ID: {bt.Cancel_ID}\tTrain No: {bt.TrainNo}\t\tBooking Date&Time :{bt.Cancel_Date_Time}\n" +
-                        $"Source: {bt.TrainDetail.Source_Station}\tDestination: {bt.TrainDetail.Final_Station}\nRefund Amount: {bt.Refund_Amount}");
+                    Console.WriteLine($"Cancellation Details:");
+                    Console.WriteLine($"  Cancel ID: {bt.Cancel_ID}\tTrain No: {bt.TrainNo}\t\tBooking Date & Time: {bt.Cancel_Date_Time}\n" +
+                        $"  Source Station: {bt.TrainDetail.Source_Station}\tFinal Station: {bt.TrainDetail.Final_Station}\n" +
+                        $"  Refund Amount: {bt.Refund_Amount}");
                     Console.WriteLine("------------------------------------------------------------------------------------------------------\n");
+
                 }
             }
             else

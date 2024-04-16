@@ -160,6 +160,24 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="AddclassFair" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TrainNo" Type="numeric" Mode="In" />
+    <Parameter Name="firstAcSeatsfare" Type="int" Mode="In" />
+    <Parameter Name="SecAcSeatsfare" Type="int" Mode="In" />
+    <Parameter Name="SLSeatsfare" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AddclassPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TrainNo" Type="numeric" Mode="In" />
+    <Parameter Name="firstAcTicketPrice" Type="int" Mode="In" />
+    <Parameter Name="SecAcTicketPrice" Type="int" Mode="In" />
+    <Parameter Name="SLTicketPrice" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AddclassSeats" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TrainNo" Type="numeric" Mode="In" />
+    <Parameter Name="firstAcSeats" Type="int" Mode="In" />
+    <Parameter Name="SecAcSeats" Type="int" Mode="In" />
+    <Parameter Name="SLSeats" Type="int" Mode="In" />
+  </Function>
   <Function Name="UpdateBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="TrainNo" Type="numeric" Mode="In" />
     <Parameter Name="Class" Type="nvarchar" Mode="In" />

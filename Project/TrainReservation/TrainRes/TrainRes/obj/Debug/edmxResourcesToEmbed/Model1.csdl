@@ -22,7 +22,7 @@
     <Property Name="Booking_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="TrainDetail" Relationship="Self.FK__Booking_D__Train__45F365D3" FromRole="Booking_Details" ToRole="TrainDetails" />
     <NavigationProperty Name="UserDetail" Relationship="Self.FK__Booking_D__UserI__44FF419A" FromRole="Booking_Details" ToRole="UserDetails" />
-    <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__PNR_N__70DDC3D8" FromRole="Booking_Details" ToRole="CancelTicket" />
+    <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__PNR_N__02FC7413" FromRole="Booking_Details" ToRole="CancelTicket" />
   </EntityType>
   <EntityType Name="CancelTicket">
     <Key>
@@ -32,11 +32,11 @@
     <Property Name="PNR_No" Type="Decimal" Precision="8" Scale="0" />
     <Property Name="UserId" Type="Decimal" Precision="5" Scale="0" />
     <Property Name="TrainNo" Type="Decimal" Precision="8" Scale="0" />
-    <Property Name="Refund_Amount" Type="Int32" />
-    <NavigationProperty Name="Booking_Details" Relationship="Self.FK__CancelTic__PNR_N__70DDC3D8" FromRole="CancelTicket" ToRole="Booking_Details" />
-    <NavigationProperty Name="TrainDetail" Relationship="Self.FK__CancelTic__Train__72C60C4A" FromRole="CancelTicket" ToRole="TrainDetails" />
-    <NavigationProperty Name="UserDetail" Relationship="Self.FK__CancelTic__UserI__71D1E811" FromRole="CancelTicket" ToRole="UserDetails" />
     <Property Name="Cancel_Date_Time" Type="DateTime" Precision="0" />
+    <Property Name="Refund_Amount" Type="Double" />
+    <NavigationProperty Name="Booking_Details" Relationship="Self.FK__CancelTic__PNR_N__02FC7413" FromRole="CancelTicket" ToRole="Booking_Details" />
+    <NavigationProperty Name="TrainDetail" Relationship="Self.FK__CancelTic__Train__04E4BC85" FromRole="CancelTicket" ToRole="TrainDetails" />
+    <NavigationProperty Name="UserDetail" Relationship="Self.FK__CancelTic__UserI__03F0984C" FromRole="CancelTicket" ToRole="UserDetails" />
   </EntityType>
   <EntityType Name="TrainDetail">
     <Key>
@@ -48,7 +48,7 @@
     <Property Name="Final_Station" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="TrainStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Booking_Details" Relationship="Self.FK__Booking_D__Train__45F365D3" FromRole="TrainDetails" ToRole="Booking_Details" />
-    <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__Train__72C60C4A" FromRole="TrainDetails" ToRole="CancelTicket" />
+    <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__Train__04E4BC85" FromRole="TrainDetails" ToRole="CancelTicket" />
     <NavigationProperty Name="Class_Type" Relationship="Self.FK__Class_Typ__Train__3C69FB99" FromRole="TrainDetails" ToRole="Class_Type" />
     <NavigationProperty Name="TicketPrices" Relationship="Self.FK__TicketPri__Train__3E52440B" FromRole="TrainDetails" ToRole="TicketPrice" />
   </EntityType>
@@ -61,7 +61,7 @@
     <Property Name="Age" Type="Int32" />
     <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Booking_Details" Relationship="Self.FK__Booking_D__UserI__44FF419A" FromRole="UserDetails" ToRole="Booking_Details" />
-    <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__UserI__71D1E811" FromRole="UserDetails" ToRole="CancelTicket" />
+    <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__UserI__03F0984C" FromRole="UserDetails" ToRole="CancelTicket" />
   </EntityType>
   <EntityType Name="Class_Type">
     <Key>
@@ -110,7 +110,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CancelTic__PNR_N__70DDC3D8">
+  <Association Name="FK__CancelTic__PNR_N__02FC7413">
     <End Role="Booking_Details" Type="Self.Booking_Details" Multiplicity="0..1" />
     <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -122,7 +122,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CancelTic__Train__72C60C4A">
+  <Association Name="FK__CancelTic__Train__04E4BC85">
     <End Role="TrainDetails" Type="Self.TrainDetail" Multiplicity="0..1" />
     <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -134,7 +134,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CancelTic__UserI__71D1E811">
+  <Association Name="FK__CancelTic__UserI__03F0984C">
     <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
     <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -170,7 +170,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TrainReservationEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="TrainReservationEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AdminDetails" EntityType="Self.AdminDetail" />
     <EntitySet Name="Booking_Details" EntityType="Self.Booking_Details" />
     <EntitySet Name="CancelTickets" EntityType="Self.CancelTicket" />
@@ -186,15 +186,15 @@
       <End Role="UserDetails" EntitySet="UserDetails" />
       <End Role="Booking_Details" EntitySet="Booking_Details" />
     </AssociationSet>
-    <AssociationSet Name="FK__CancelTic__PNR_N__70DDC3D8" Association="Self.FK__CancelTic__PNR_N__70DDC3D8">
+    <AssociationSet Name="FK__CancelTic__PNR_N__02FC7413" Association="Self.FK__CancelTic__PNR_N__02FC7413">
       <End Role="Booking_Details" EntitySet="Booking_Details" />
       <End Role="CancelTicket" EntitySet="CancelTickets" />
     </AssociationSet>
-    <AssociationSet Name="FK__CancelTic__Train__72C60C4A" Association="Self.FK__CancelTic__Train__72C60C4A">
+    <AssociationSet Name="FK__CancelTic__Train__04E4BC85" Association="Self.FK__CancelTic__Train__04E4BC85">
       <End Role="TrainDetails" EntitySet="TrainDetails" />
       <End Role="CancelTicket" EntitySet="CancelTickets" />
     </AssociationSet>
-    <AssociationSet Name="FK__CancelTic__UserI__71D1E811" Association="Self.FK__CancelTic__UserI__71D1E811">
+    <AssociationSet Name="FK__CancelTic__UserI__03F0984C" Association="Self.FK__CancelTic__UserI__03F0984C">
       <End Role="UserDetails" EntitySet="UserDetails" />
       <End Role="CancelTicket" EntitySet="CancelTickets" />
     </AssociationSet>
@@ -206,6 +206,24 @@
       <End Role="TrainDetails" EntitySet="TrainDetails" />
       <End Role="TicketPrice" EntitySet="TicketPrices" />
     </AssociationSet>
+    <FunctionImport Name="AddclassFair">
+      <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
+      <Parameter Name="firstAcSeatsfare" Mode="In" Type="Int32" />
+      <Parameter Name="SecAcSeatsfare" Mode="In" Type="Int32" />
+      <Parameter Name="SLSeatsfare" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddclassPrice">
+      <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
+      <Parameter Name="firstAcTicketPrice" Mode="In" Type="Int32" />
+      <Parameter Name="SecAcTicketPrice" Mode="In" Type="Int32" />
+      <Parameter Name="SLTicketPrice" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddclassSeats">
+      <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
+      <Parameter Name="firstAcSeats" Mode="In" Type="Int32" />
+      <Parameter Name="SecAcSeats" Mode="In" Type="Int32" />
+      <Parameter Name="SLSeats" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="UpdateBooking">
       <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
       <Parameter Name="Class" Mode="In" Type="String" />

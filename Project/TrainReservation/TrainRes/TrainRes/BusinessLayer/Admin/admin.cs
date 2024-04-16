@@ -8,7 +8,7 @@ namespace TrainRes.BusinessLayer.Admin
 {
     class admin
     {
-        static TrainReservationEntities Rb = new TrainReservationEntities();
+        static TrainReservationEntities1 Rb = new TrainReservationEntities1();
         static TrainDetail t = new TrainDetail();
         public static void AdminLogin()
         {
@@ -39,34 +39,40 @@ namespace TrainRes.BusinessLayer.Admin
         }
         public static void AdminOptions()
         {
-            Console.WriteLine("-----------WELCOME TO ADMIN MENU----------- ");
-            Console.WriteLine("Press 1 for 'Add Train'");
-            Console.WriteLine("Press 2 for 'Modify Train'");
-            Console.WriteLine("Press 3 for 'Delete Train'");
-            Console.WriteLine("Press 4 for 'Show Trains Chat'");
-            Console.WriteLine("Press 5 for 'Exit'");
-            int n = int.Parse(Console.ReadLine());
-            switch (n)
+            bool flag = true;
+
+            while (flag)
             {
-                case 1:
-                    Addtrain();
-                    break;
-                case 2:
-                    UpdateTrain();
-                    break;
-                case 3:
-                    DeleteTrain();
-                    break;
-                case 4:
-                    User.user.ShowTrain();
-                    AdminOptions();
-                    break;
-                case 5:
-                    break;
-                default:
-                    Console.WriteLine("Invalid Option....");
-                    AdminOptions();
-                    break;
+                Console.WriteLine("-----------WELCOME TO ADMIN MENU----------- ");
+                Console.WriteLine("Press 1 for 'Add Train'");
+                Console.WriteLine("Press 2 for 'Modify Train'");
+                Console.WriteLine("Press 3 for 'Delete Train'");
+                Console.WriteLine("Press 4 for 'Show Trains Chart'");
+                Console.WriteLine("Press 5 for 'Exit'");
+                int n = int.Parse(Console.ReadLine());
+                switch (n)
+                {
+                    case 1:
+                        Addtrain();
+                        break;
+                    case 2:
+                        UpdateTrain();
+                        break;
+                    case 3:
+                        DeleteTrain();
+                        break;
+                    case 4:
+                        User.user.ShowTrain();
+                        AdminOptions();
+                        break;
+                    case 5:
+                        flag = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Option....");
+                      
+                        break;
+                }
             }
 
         }
@@ -81,8 +87,30 @@ namespace TrainRes.BusinessLayer.Admin
             t.Source_Station = Console.ReadLine();
             Console.WriteLine("Enter the Final Station: ");
             t.Final_Station = Console.ReadLine();
+            t.TrainStatus = "Active";
             Rb.TrainDetails.Add(t);
             Rb.SaveChanges();
+
+            // Adding seats of new trains
+            Console.Write("Enter 1AC Seats: ");
+            int firstAcSeats = int.Parse(Console.ReadLine());
+            Console.Write("Enter 2AC Seats: ");
+            int SecAcSeats = int.Parse(Console.ReadLine());
+            Console.Write("Enter SL Seats: ");
+            int SLSeats = int.Parse(Console.ReadLine());
+            Rb.AddclassSeats(t.TrainNo, firstAcSeats, SecAcSeats, SLSeats);    // calling procedure to add the train seats of 1ac,2ac,and sl class.
+
+            // Adding fare of new trains
+            Console.Write("Enter 1AC Ticket Price: ");
+            int firstAcSeatsfare = int.Parse(Console.ReadLine());
+            Console.Write("Enter 2AC Ticket Price: ");
+            int SecAcSeatsfare = int.Parse(Console.ReadLine());
+            Console.Write("Enter SL Ticket Price: ");
+            int SLSeatsfare = int.Parse(Console.ReadLine());
+            Rb.AddclassPrice(t.TrainNo, firstAcSeatsfare, SecAcSeatsfare, SLSeatsfare); // calling procedure to add the fares....
+
+            //Rb.SaveChanges();
+            Console.WriteLine("Train Added Successfull");
 
         }
         public static void UpdateTrain()

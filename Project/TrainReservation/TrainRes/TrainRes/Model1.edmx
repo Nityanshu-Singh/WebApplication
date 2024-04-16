@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TrainReservationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TrainReservationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminDetails">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -165,6 +165,24 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddclassFair" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainNo" Type="numeric" Mode="In" />
+          <Parameter Name="firstAcSeatsfare" Type="int" Mode="In" />
+          <Parameter Name="SecAcSeatsfare" Type="int" Mode="In" />
+          <Parameter Name="SLSeatsfare" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddclassPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainNo" Type="numeric" Mode="In" />
+          <Parameter Name="firstAcTicketPrice" Type="int" Mode="In" />
+          <Parameter Name="SecAcTicketPrice" Type="int" Mode="In" />
+          <Parameter Name="SLTicketPrice" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddclassSeats" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainNo" Type="numeric" Mode="In" />
+          <Parameter Name="firstAcSeats" Type="int" Mode="In" />
+          <Parameter Name="SecAcSeats" Type="int" Mode="In" />
+          <Parameter Name="SLSeats" Type="int" Mode="In" />
+        </Function>
         <Function Name="UpdateBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TrainNo" Type="numeric" Mode="In" />
           <Parameter Name="Class" Type="nvarchar" Mode="In" />
@@ -228,7 +246,8 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             <End Role="TicketPrice" EntitySet="TicketPrice" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TrainReservationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -254,7 +273,7 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
           <Property Name="Booking_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TrainDetail" Relationship="Self.FK__Booking_D__Train__45F365D3" FromRole="Booking_Details" ToRole="TrainDetails" />
           <NavigationProperty Name="UserDetail" Relationship="Self.FK__Booking_D__UserI__44FF419A" FromRole="Booking_Details" ToRole="UserDetails" />
-          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__PNR_N__70DDC3D8" FromRole="Booking_Details" ToRole="CancelTicket" />
+          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__PNR_N__02FC7413" FromRole="Booking_Details" ToRole="CancelTicket" />
         </EntityType>
         <EntityType Name="CancelTicket">
           <Key>
@@ -264,11 +283,11 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
           <Property Name="PNR_No" Type="Decimal" Precision="8" Scale="0" />
           <Property Name="UserId" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="TrainNo" Type="Decimal" Precision="8" Scale="0" />
-          <Property Name="Refund_Amount" Type="Int32" />
-          <NavigationProperty Name="Booking_Details" Relationship="Self.FK__CancelTic__PNR_N__70DDC3D8" FromRole="CancelTicket" ToRole="Booking_Details" />
-          <NavigationProperty Name="TrainDetail" Relationship="Self.FK__CancelTic__Train__72C60C4A" FromRole="CancelTicket" ToRole="TrainDetails" />
-          <NavigationProperty Name="UserDetail" Relationship="Self.FK__CancelTic__UserI__71D1E811" FromRole="CancelTicket" ToRole="UserDetails" />
           <Property Name="Cancel_Date_Time" Type="DateTime" Precision="0" />
+          <Property Name="Refund_Amount" Type="Double" />
+          <NavigationProperty Name="Booking_Details" Relationship="Self.FK__CancelTic__PNR_N__02FC7413" FromRole="CancelTicket" ToRole="Booking_Details" />
+          <NavigationProperty Name="TrainDetail" Relationship="Self.FK__CancelTic__Train__04E4BC85" FromRole="CancelTicket" ToRole="TrainDetails" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__CancelTic__UserI__03F0984C" FromRole="CancelTicket" ToRole="UserDetails" />
         </EntityType>
         <EntityType Name="TrainDetail">
           <Key>
@@ -280,7 +299,7 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
           <Property Name="Final_Station" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TrainStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Booking_Details" Relationship="Self.FK__Booking_D__Train__45F365D3" FromRole="TrainDetails" ToRole="Booking_Details" />
-          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__Train__72C60C4A" FromRole="TrainDetails" ToRole="CancelTicket" />
+          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__Train__04E4BC85" FromRole="TrainDetails" ToRole="CancelTicket" />
           <NavigationProperty Name="Class_Type" Relationship="Self.FK__Class_Typ__Train__3C69FB99" FromRole="TrainDetails" ToRole="Class_Type" />
           <NavigationProperty Name="TicketPrices" Relationship="Self.FK__TicketPri__Train__3E52440B" FromRole="TrainDetails" ToRole="TicketPrice" />
         </EntityType>
@@ -293,7 +312,7 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
           <Property Name="Age" Type="Int32" />
           <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Booking_Details" Relationship="Self.FK__Booking_D__UserI__44FF419A" FromRole="UserDetails" ToRole="Booking_Details" />
-          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__UserI__71D1E811" FromRole="UserDetails" ToRole="CancelTicket" />
+          <NavigationProperty Name="CancelTickets" Relationship="Self.FK__CancelTic__UserI__03F0984C" FromRole="UserDetails" ToRole="CancelTicket" />
         </EntityType>
         <EntityType Name="Class_Type">
           <Key>
@@ -342,7 +361,7 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CancelTic__PNR_N__70DDC3D8">
+        <Association Name="FK__CancelTic__PNR_N__02FC7413">
           <End Role="Booking_Details" Type="Self.Booking_Details" Multiplicity="0..1" />
           <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -354,7 +373,7 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CancelTic__Train__72C60C4A">
+        <Association Name="FK__CancelTic__Train__04E4BC85">
           <End Role="TrainDetails" Type="Self.TrainDetail" Multiplicity="0..1" />
           <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -366,7 +385,7 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CancelTic__UserI__71D1E811">
+        <Association Name="FK__CancelTic__UserI__03F0984C">
           <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
           <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -402,7 +421,7 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TrainReservationEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TrainReservationEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AdminDetails" EntityType="Self.AdminDetail" />
           <EntitySet Name="Booking_Details" EntityType="Self.Booking_Details" />
           <EntitySet Name="CancelTickets" EntityType="Self.CancelTicket" />
@@ -418,15 +437,15 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="Booking_Details" EntitySet="Booking_Details" />
           </AssociationSet>
-          <AssociationSet Name="FK__CancelTic__PNR_N__70DDC3D8" Association="Self.FK__CancelTic__PNR_N__70DDC3D8">
+          <AssociationSet Name="FK__CancelTic__PNR_N__02FC7413" Association="Self.FK__CancelTic__PNR_N__02FC7413">
             <End Role="Booking_Details" EntitySet="Booking_Details" />
             <End Role="CancelTicket" EntitySet="CancelTickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__CancelTic__Train__72C60C4A" Association="Self.FK__CancelTic__Train__72C60C4A">
+          <AssociationSet Name="FK__CancelTic__Train__04E4BC85" Association="Self.FK__CancelTic__Train__04E4BC85">
             <End Role="TrainDetails" EntitySet="TrainDetails" />
             <End Role="CancelTicket" EntitySet="CancelTickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__CancelTic__UserI__71D1E811" Association="Self.FK__CancelTic__UserI__71D1E811">
+          <AssociationSet Name="FK__CancelTic__UserI__03F0984C" Association="Self.FK__CancelTic__UserI__03F0984C">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="CancelTicket" EntitySet="CancelTickets" />
           </AssociationSet>
@@ -438,6 +457,24 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             <End Role="TrainDetails" EntitySet="TrainDetails" />
             <End Role="TicketPrice" EntitySet="TicketPrices" />
           </AssociationSet>
+          <FunctionImport Name="AddclassFair">
+            <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
+            <Parameter Name="firstAcSeatsfare" Mode="In" Type="Int32" />
+            <Parameter Name="SecAcSeatsfare" Mode="In" Type="Int32" />
+            <Parameter Name="SLSeatsfare" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddclassPrice">
+            <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
+            <Parameter Name="firstAcTicketPrice" Mode="In" Type="Int32" />
+            <Parameter Name="SecAcTicketPrice" Mode="In" Type="Int32" />
+            <Parameter Name="SLTicketPrice" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddclassSeats">
+            <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
+            <Parameter Name="firstAcSeats" Mode="In" Type="Int32" />
+            <Parameter Name="SecAcSeats" Mode="In" Type="Int32" />
+            <Parameter Name="SLSeats" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="UpdateBooking">
             <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
             <Parameter Name="Class" Mode="In" Type="String" />
@@ -454,7 +491,7 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TrainReservationModelStoreContainer" CdmEntityContainer="TrainReservationEntities">
+        <EntityContainerMapping StorageEntityContainer="TrainReservationModelStoreContainer" CdmEntityContainer="TrainReservationEntities1">
           <EntitySetMapping Name="AdminDetails">
             <EntityTypeMapping TypeName="TrainReservationModel.AdminDetail">
               <MappingFragment StoreEntitySet="AdminDetails">
@@ -481,11 +518,11 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
           <EntitySetMapping Name="CancelTickets">
             <EntityTypeMapping TypeName="TrainReservationModel.CancelTicket">
               <MappingFragment StoreEntitySet="CancelTicket">
-                <ScalarProperty Name="Cancel_Date_Time" ColumnName="Cancel_Date_Time" />
                 <ScalarProperty Name="Cancel_ID" ColumnName="Cancel_ID" />
                 <ScalarProperty Name="PNR_No" ColumnName="PNR_No" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="TrainNo" ColumnName="TrainNo" />
+                <ScalarProperty Name="Cancel_Date_Time" ColumnName="Cancel_Date_Time" />
                 <ScalarProperty Name="Refund_Amount" ColumnName="Refund_Amount" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -533,6 +570,9 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddclassFair" FunctionName="TrainReservationModel.Store.AddclassFair" />
+          <FunctionImportMapping FunctionImportName="AddclassPrice" FunctionName="TrainReservationModel.Store.AddclassPrice" />
+          <FunctionImportMapping FunctionImportName="AddclassSeats" FunctionName="TrainReservationModel.Store.AddclassSeats" />
           <FunctionImportMapping FunctionImportName="UpdateBooking" FunctionName="TrainReservationModel.Store.UpdateBooking" />
           <FunctionImportMapping FunctionImportName="UpdateCancelTicket" FunctionName="TrainReservationModel.Store.UpdateCancelTicket" />
         </EntityContainerMapping>

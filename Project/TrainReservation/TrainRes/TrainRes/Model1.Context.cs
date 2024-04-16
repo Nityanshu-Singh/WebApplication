@@ -15,10 +15,10 @@ namespace TrainRes
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class TrainReservationEntities : DbContext
+    public partial class TrainReservationEntities1 : DbContext
     {
-        public TrainReservationEntities()
-            : base("name=TrainReservationEntities")
+        public TrainReservationEntities1()
+            : base("name=TrainReservationEntities1")
         {
         }
     
@@ -34,6 +34,69 @@ namespace TrainRes
         public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<Class_Type> Class_Type { get; set; }
         public virtual DbSet<TicketPrice> TicketPrices { get; set; }
+    
+        public virtual int AddclassFair(Nullable<decimal> trainNo, Nullable<int> firstAcSeatsfare, Nullable<int> secAcSeatsfare, Nullable<int> sLSeatsfare)
+        {
+            var trainNoParameter = trainNo.HasValue ?
+                new ObjectParameter("TrainNo", trainNo) :
+                new ObjectParameter("TrainNo", typeof(decimal));
+    
+            var firstAcSeatsfareParameter = firstAcSeatsfare.HasValue ?
+                new ObjectParameter("firstAcSeatsfare", firstAcSeatsfare) :
+                new ObjectParameter("firstAcSeatsfare", typeof(int));
+    
+            var secAcSeatsfareParameter = secAcSeatsfare.HasValue ?
+                new ObjectParameter("SecAcSeatsfare", secAcSeatsfare) :
+                new ObjectParameter("SecAcSeatsfare", typeof(int));
+    
+            var sLSeatsfareParameter = sLSeatsfare.HasValue ?
+                new ObjectParameter("SLSeatsfare", sLSeatsfare) :
+                new ObjectParameter("SLSeatsfare", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddclassFair", trainNoParameter, firstAcSeatsfareParameter, secAcSeatsfareParameter, sLSeatsfareParameter);
+        }
+    
+        public virtual int AddclassPrice(Nullable<decimal> trainNo, Nullable<int> firstAcTicketPrice, Nullable<int> secAcTicketPrice, Nullable<int> sLTicketPrice)
+        {
+            var trainNoParameter = trainNo.HasValue ?
+                new ObjectParameter("TrainNo", trainNo) :
+                new ObjectParameter("TrainNo", typeof(decimal));
+    
+            var firstAcTicketPriceParameter = firstAcTicketPrice.HasValue ?
+                new ObjectParameter("firstAcTicketPrice", firstAcTicketPrice) :
+                new ObjectParameter("firstAcTicketPrice", typeof(int));
+    
+            var secAcTicketPriceParameter = secAcTicketPrice.HasValue ?
+                new ObjectParameter("SecAcTicketPrice", secAcTicketPrice) :
+                new ObjectParameter("SecAcTicketPrice", typeof(int));
+    
+            var sLTicketPriceParameter = sLTicketPrice.HasValue ?
+                new ObjectParameter("SLTicketPrice", sLTicketPrice) :
+                new ObjectParameter("SLTicketPrice", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddclassPrice", trainNoParameter, firstAcTicketPriceParameter, secAcTicketPriceParameter, sLTicketPriceParameter);
+        }
+    
+        public virtual int AddclassSeats(Nullable<decimal> trainNo, Nullable<int> firstAcSeats, Nullable<int> secAcSeats, Nullable<int> sLSeats)
+        {
+            var trainNoParameter = trainNo.HasValue ?
+                new ObjectParameter("TrainNo", trainNo) :
+                new ObjectParameter("TrainNo", typeof(decimal));
+    
+            var firstAcSeatsParameter = firstAcSeats.HasValue ?
+                new ObjectParameter("firstAcSeats", firstAcSeats) :
+                new ObjectParameter("firstAcSeats", typeof(int));
+    
+            var secAcSeatsParameter = secAcSeats.HasValue ?
+                new ObjectParameter("SecAcSeats", secAcSeats) :
+                new ObjectParameter("SecAcSeats", typeof(int));
+    
+            var sLSeatsParameter = sLSeats.HasValue ?
+                new ObjectParameter("SLSeats", sLSeats) :
+                new ObjectParameter("SLSeats", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddclassSeats", trainNoParameter, firstAcSeatsParameter, secAcSeatsParameter, sLSeatsParameter);
+        }
     
         public virtual int UpdateBooking(Nullable<decimal> trainNo, string @class, Nullable<int> seatsBooked)
         {
