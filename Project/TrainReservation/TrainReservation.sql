@@ -136,7 +136,7 @@ end
    
    -- Stored Procedure to Add seats and of New Train
 CREATE or alter PROCEDURE AddclassSeats( 
-@TrainNo NUMERIC(5),
+@TrainNo NUMERIC(8),
 @firstAcSeats int,
 @SecAcSeats int,
 @SLSeats int
@@ -148,7 +148,7 @@ insert into Class_Type(TrainNo,[1-AC],[2-AC],[SL]) values
  
 -- Stored Proceudure to add Ticket Price of 1AC,2AC and SL class
 create or alter PROC AddclassPrice( 
-@TrainNo NUMERIC(5),
+@TrainNo NUMERIC(8),
 @firstAcTicketPrice int,
 @SecAcTicketPrice int,
 @SLTicketPrice int

@@ -35,27 +35,6 @@ namespace TrainRes
         public virtual DbSet<Class_Type> Class_Type { get; set; }
         public virtual DbSet<TicketPrice> TicketPrices { get; set; }
     
-        public virtual int AddclassFair(Nullable<decimal> trainNo, Nullable<int> firstAcSeatsfare, Nullable<int> secAcSeatsfare, Nullable<int> sLSeatsfare)
-        {
-            var trainNoParameter = trainNo.HasValue ?
-                new ObjectParameter("TrainNo", trainNo) :
-                new ObjectParameter("TrainNo", typeof(decimal));
-    
-            var firstAcSeatsfareParameter = firstAcSeatsfare.HasValue ?
-                new ObjectParameter("firstAcSeatsfare", firstAcSeatsfare) :
-                new ObjectParameter("firstAcSeatsfare", typeof(int));
-    
-            var secAcSeatsfareParameter = secAcSeatsfare.HasValue ?
-                new ObjectParameter("SecAcSeatsfare", secAcSeatsfare) :
-                new ObjectParameter("SecAcSeatsfare", typeof(int));
-    
-            var sLSeatsfareParameter = sLSeatsfare.HasValue ?
-                new ObjectParameter("SLSeatsfare", sLSeatsfare) :
-                new ObjectParameter("SLSeatsfare", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddclassFair", trainNoParameter, firstAcSeatsfareParameter, secAcSeatsfareParameter, sLSeatsfareParameter);
-        }
-    
         public virtual int AddclassPrice(Nullable<decimal> trainNo, Nullable<int> firstAcTicketPrice, Nullable<int> secAcTicketPrice, Nullable<int> sLTicketPrice)
         {
             var trainNoParameter = trainNo.HasValue ?

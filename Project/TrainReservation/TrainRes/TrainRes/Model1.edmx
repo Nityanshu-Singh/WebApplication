@@ -165,12 +165,6 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="AddclassFair" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TrainNo" Type="numeric" Mode="In" />
-          <Parameter Name="firstAcSeatsfare" Type="int" Mode="In" />
-          <Parameter Name="SecAcSeatsfare" Type="int" Mode="In" />
-          <Parameter Name="SLSeatsfare" Type="int" Mode="In" />
-        </Function>
         <Function Name="AddclassPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TrainNo" Type="numeric" Mode="In" />
           <Parameter Name="firstAcTicketPrice" Type="int" Mode="In" />
@@ -457,12 +451,6 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
             <End Role="TrainDetails" EntitySet="TrainDetails" />
             <End Role="TicketPrice" EntitySet="TicketPrices" />
           </AssociationSet>
-          <FunctionImport Name="AddclassFair">
-            <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
-            <Parameter Name="firstAcSeatsfare" Mode="In" Type="Int32" />
-            <Parameter Name="SecAcSeatsfare" Mode="In" Type="Int32" />
-            <Parameter Name="SLSeatsfare" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="AddclassPrice">
             <Parameter Name="TrainNo" Mode="In" Type="Decimal" />
             <Parameter Name="firstAcTicketPrice" Mode="In" Type="Int32" />
@@ -570,7 +558,6 @@ warning 6002: The table/view 'TrainReservation.dbo.TicketPrice' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AddclassFair" FunctionName="TrainReservationModel.Store.AddclassFair" />
           <FunctionImportMapping FunctionImportName="AddclassPrice" FunctionName="TrainReservationModel.Store.AddclassPrice" />
           <FunctionImportMapping FunctionImportName="AddclassSeats" FunctionName="TrainReservationModel.Store.AddclassSeats" />
           <FunctionImportMapping FunctionImportName="UpdateBooking" FunctionName="TrainReservationModel.Store.UpdateBooking" />

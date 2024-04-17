@@ -348,7 +348,7 @@ namespace TrainRes.BusinessLayer.User
                 {
                     Console.WriteLine("\n---------------------------------------------------------------------------------------------------");
                     Console.WriteLine($"Cancellation Details:");
-                    Console.WriteLine($"  Cancel ID: {bt.Cancel_ID}\tTrain No: {bt.TrainNo}\t\tBooking Date & Time: {bt.Cancel_Date_Time}\n" +
+                    Console.WriteLine($"  Cancel ID: {bt.Cancel_ID}\tTrain No: {bt.TrainNo}\t\tCancelling Date & Time: {bt.Cancel_Date_Time}\n" +
                         $"  Source Station: {bt.TrainDetail.Source_Station}\tFinal Station: {bt.TrainDetail.Final_Station}\n" +
                         $"  Refund Amount: {bt.Refund_Amount}");
                     Console.WriteLine("------------------------------------------------------------------------------------------------------\n");

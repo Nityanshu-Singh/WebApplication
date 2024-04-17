@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="360d897d78784fdb84eb66488f7edd63" Name="Diagram1">
+      <Diagram DiagramId="7576a3de448c4f949a2b7e2ae912c603" Name="Diagram1">
         <EntityTypeShape EntityType="TrainReservationModel.AdminDetail" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TrainReservationModel.Booking_Details" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TrainReservationModel.CancelTicket" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />

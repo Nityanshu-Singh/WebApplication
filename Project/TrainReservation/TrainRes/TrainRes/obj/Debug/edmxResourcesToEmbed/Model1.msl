@@ -79,7 +79,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="AddclassFair" FunctionName="TrainReservationModel.Store.AddclassFair" />
     <FunctionImportMapping FunctionImportName="AddclassPrice" FunctionName="TrainReservationModel.Store.AddclassPrice" />
     <FunctionImportMapping FunctionImportName="AddclassSeats" FunctionName="TrainReservationModel.Store.AddclassSeats" />
     <FunctionImportMapping FunctionImportName="UpdateBooking" FunctionName="TrainReservationModel.Store.UpdateBooking" />

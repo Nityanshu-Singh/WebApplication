@@ -62,7 +62,7 @@ namespace TrainRes.BusinessLayer.Admin
                         DeleteTrain();
                         break;
                     case 4:
-                        User.user.ShowTrain();
+                        DisplayAdminTrain();
                         AdminOptions();
                         break;
                     case 5:
@@ -74,6 +74,25 @@ namespace TrainRes.BusinessLayer.Admin
                         break;
                 }
             }
+
+        }
+
+        public static void DisplayAdminTrain()
+        {
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("\t\t\t\t\t---Train Details---");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------");
+            var trains = Rb.TrainDetails.ToList();
+            int ct = 1;
+            Console.WriteLine($"->\tTrain-No\tTrain-Name\t\tSource\t\tDestination\t\tStatus");
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------");
+            foreach (var train in trains)
+            {
+                Console.WriteLine($"{ct}\t{train.TrainNo}\t\t{train.TrainName.PadRight(20)}\t{train.Source_Station.PadRight(10)}\t{train.Final_Station.PadRight(15)}\t{train.TrainStatus}");
+                ct++;
+            }
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------");
 
         }
         public static void Addtrain()
@@ -102,20 +121,20 @@ namespace TrainRes.BusinessLayer.Admin
 
             // Adding fare of new trains
             Console.Write("Enter 1AC Ticket Price: ");
-            int firstAcSeatsfare = int.Parse(Console.ReadLine());
+            int firstAcTicketPrice = int.Parse(Console.ReadLine());
             Console.Write("Enter 2AC Ticket Price: ");
-            int SecAcSeatsfare = int.Parse(Console.ReadLine());
+            int SecAcTicketPrice = int.Parse(Console.ReadLine());
             Console.Write("Enter SL Ticket Price: ");
-            int SLSeatsfare = int.Parse(Console.ReadLine());
-            Rb.AddclassPrice(t.TrainNo, firstAcSeatsfare, SecAcSeatsfare, SLSeatsfare); // calling procedure to add the fares....
+            int SLTicketPrice = int.Parse(Console.ReadLine());
+            Rb.AddclassPrice(t.TrainNo, firstAcTicketPrice, SecAcTicketPrice, SLTicketPrice); // calling procedure to add the fares....
 
             //Rb.SaveChanges();
-            Console.WriteLine("Train Added Successfull");
+            Console.WriteLine("SuccessFully Train is Added....");
 
         }
         public static void UpdateTrain()
         {
-            User.user.ShowTrain();
+            DisplayAdminTrain();
             Console.WriteLine("Enter the Train Number You want to modify: ");
             int trNo = int.Parse(Console.ReadLine());
             var updTrNo = Rb.TrainDetails.Find(trNo);
@@ -142,7 +161,7 @@ namespace TrainRes.BusinessLayer.Admin
         
         public static void DeleteTrain()
         {
-            User.user.ShowTrain();
+            DisplayAdminTrain();
             Console.WriteLine("Enter Train Number You want to delete: ");
             int trNo = int.Parse(Console.ReadLine());
             var trainRemove = Rb.TrainDetails.Find(trNo);
