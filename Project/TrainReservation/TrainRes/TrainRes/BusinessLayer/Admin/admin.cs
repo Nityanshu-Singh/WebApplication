@@ -81,11 +81,15 @@ namespace TrainRes.BusinessLayer.Admin
         {
             Console.WriteLine();
             Console.WriteLine("-----------------------------------------------------------------------------------------------------------");
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("\t\t\t\t\t---Train Details---");
+            Console.ResetColor();
             Console.WriteLine("-----------------------------------------------------------------------------------------------------------");
             var trains = Rb.TrainDetails.ToList();
             int ct = 1;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"->\tTrain-No\tTrain-Name\t\tSource\t\tDestination\t\tStatus");
+            Console.ResetColor();
             Console.WriteLine("------------------------------------------------------------------------------------------------------------");
             foreach (var train in trains)
             {
@@ -150,7 +154,9 @@ namespace TrainRes.BusinessLayer.Admin
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("TRAIN NOT FOUND....");
+                Console.ResetColor();
                 AdminOptions();
             }
 

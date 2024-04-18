@@ -23,7 +23,7 @@ namespace TrainRes.BusinessLayer.User
             UserDetail us = new UserDetail();
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine("\tPress 1 for Existing User");
-            Console.WriteLine("\t2.Press 2 for New User");
+            Console.WriteLine("\tPress 2 for New User");
             Console.Write("Your Option Choice: ");
             int n = int.Parse(Console.ReadLine());
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -59,12 +59,16 @@ namespace TrainRes.BusinessLayer.User
             bool vl = validate(uid, pass);
             if (vl)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Validation Successful.......");
+                Console.ResetColor();
                 UserOptions();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Validation Failed");
+                Console.ResetColor();
                 UserLogin();
 
             }
@@ -81,7 +85,9 @@ namespace TrainRes.BusinessLayer.User
             while (flag)
             {
                 Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 Console.WriteLine("\t\t      Welcome To User Menu     ");
+                Console.ResetColor();
                 Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 Console.WriteLine("\t\t1. Book Ticket");
                 Console.WriteLine("\t\t2. Cancel Ticket");
@@ -138,7 +144,9 @@ namespace TrainRes.BusinessLayer.User
         {
             Console.WriteLine();
             Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\t\t\t\t---Active Train Details---");
+            Console.ResetColor();
             Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
             var activeTrains = Rb.TrainDetails.Where(t => t.TrainStatus == "Active").ToList();
@@ -187,7 +195,9 @@ namespace TrainRes.BusinessLayer.User
 
                 Rb.UpdateBooking(trNo, cls, ttltick);   // call procedure to update the seats...
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\t\t\t\t----Your Booking Details----");
+                Console.ResetColor();
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                 Console.WriteLine("------------------------------------------------------------------------------------------------");
                 Console.WriteLine($"| User ID: {uid,-10} | PNR No: {PNRNo,-10} | Booking Date Time: {bt.Booking_Date_Time,-20} | Train Number: {trNo,-10} |");
@@ -217,12 +227,16 @@ namespace TrainRes.BusinessLayer.User
             if (trSeat1 != null)
             {
                 Console.WriteLine("\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\t\t\tTicket Prices by Train Class");
+                Console.ResetColor();
                 Console.WriteLine("\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 Console.WriteLine($"\tSelected Train Number: {trSeat.TrainNo}\n");
 
                 Console.WriteLine("\t-----------------------------------------------------------");
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\t| Class      | Seats Available | Ticket Price             |");
+                Console.ResetColor();
                 Console.WriteLine("\t-----------------------------------------------------------");
                 Console.WriteLine($"\t| 1. 1AC     | {trSeat.C1_AC,-15} | {seatPrice.C1_AC_Price,-25} |");
                 Console.WriteLine($"\t| 2. 2AC     | {trSeat.C2_AC,-15} | {seatPrice.C2_AC_Price,-25} |");
@@ -236,7 +250,9 @@ namespace TrainRes.BusinessLayer.User
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No Train Found.. Please check the train Number");
+                Console.ResetColor();
                 goto here;
             }
             // Calculate Ticket Price....
@@ -310,7 +326,9 @@ namespace TrainRes.BusinessLayer.User
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No PNR No. Found....");
+                Console.ResetColor();
             }
         }
 
@@ -324,7 +342,9 @@ namespace TrainRes.BusinessLayer.User
                 foreach (var bt in booked_tkt)
                 {
                     Console.WriteLine("\n-----------------------------------------------------------------------------------------------");
-                    Console.WriteLine($"Booking Details:");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine($"\t\t\t\tBooking Details:");
+                    Console.ResetColor();
                     Console.WriteLine($"  Book ID: {bt.PNR_NO}\t\tTrain No: {bt.TrainNo}\t\tBooking Date & Time: {bt.Booking_Date_Time}\n" +
                         $"  Source Station: {bt.TrainDetail.Source_Station}\tFinal Station: {bt.TrainDetail.Final_Station}\n" +
                         $"  Total Fare: {bt.Total_Price}\t\tStatus: {bt.Booking_Status}");
@@ -334,7 +354,9 @@ namespace TrainRes.BusinessLayer.User
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No Booking Details Found");
+                Console.ResetColor();
             }
         }
 
@@ -347,7 +369,9 @@ namespace TrainRes.BusinessLayer.User
                 foreach (var bt in cancel_tkt)
                 {
                     Console.WriteLine("\n---------------------------------------------------------------------------------------------------");
-                    Console.WriteLine($"Cancellation Details:");
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine($"\t\t\tCancellation Details:");
+                    Console.ResetColor();
                     Console.WriteLine($"  Cancel ID: {bt.Cancel_ID}\tTrain No: {bt.TrainNo}\t\tCancelling Date & Time: {bt.Cancel_Date_Time}\n" +
                         $"  Source Station: {bt.TrainDetail.Source_Station}\tFinal Station: {bt.TrainDetail.Final_Station}\n" +
                         $"  Refund Amount: {bt.Refund_Amount}");
@@ -357,7 +381,9 @@ namespace TrainRes.BusinessLayer.User
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No Cancellation Details Found");
+                Console.ResetColor();
             }
         }
     }

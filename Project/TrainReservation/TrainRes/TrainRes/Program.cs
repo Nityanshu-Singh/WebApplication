@@ -16,9 +16,15 @@ namespace TrainRes
             bool flag = true;
             while(flag)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\t\t~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("\t\t\t\t----Indian Railways Wishes You A Happy Journey----");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\t\t~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*\n");
+                Console.ResetColor();
 
                 Console.WriteLine("\t\tPress 1 for Admin :-");
                 Console.WriteLine("\t\tPress 2 for User :-");
@@ -45,8 +51,10 @@ namespace TrainRes
                     case 3:
                         {
                             flag = false;
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             Console.WriteLine("Hope You Like our Services...");
                             Console.WriteLine("Have a Great Day!");
+                            Console.ResetColor();
                             break;
                         }
                     default:
