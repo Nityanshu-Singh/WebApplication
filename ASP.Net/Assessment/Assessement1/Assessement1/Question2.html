@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display the number are odd/even</title>
+</head>
+<body>
+    <h2>Odd or Even number upto 15</h2>
+
+    <div id="output"></div>
+
+    <script>for (let i = 0; i <= 15; i++) {
+    let message = `${i} is `;
+    // Check the number is odd or ever 
+    if (i % 2 === 0) {
+        message += "even";
+    } else {
+        message += "odd";
+    }
+    // Display the odd/even number
+    document.getElementById("output").innerHTML += message + "<br>";
+}</script>
+</body>
+</html>

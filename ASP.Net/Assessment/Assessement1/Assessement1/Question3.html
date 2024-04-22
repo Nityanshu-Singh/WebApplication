@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Button Click Event Listener</title>
+    <style type="text/css">
+        body {
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h4>Click Button</h4>
+
+    <h2>Button Click Event</h2>
+    <button id="clickButton">Click Me</button>
+    <p id="clickCount">Number of clicks: 0</p>
+
+    <script>
+        var clickCount = 0;
+
+        document.getElementById('clickButton').onclick = function () {
+            clickCount++;
+            document.getElementById('clickCount').textContent = `Number of clicks: ${clickCount}`;
+        };
+    </script>
+</body>
+</html>

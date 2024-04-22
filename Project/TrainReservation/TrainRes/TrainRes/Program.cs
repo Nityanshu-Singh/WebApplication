@@ -51,7 +51,7 @@ namespace TrainRes
                     case 3:
                         {
                             flag = false;
-                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.ForegroundColor = ConsoleColor.Magenta;
                             Console.WriteLine("Hope You Like our Services...");
                             Console.WriteLine("Have a Great Day!");
                             Console.ResetColor();

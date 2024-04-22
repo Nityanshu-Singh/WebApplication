@@ -63,7 +63,8 @@ namespace TrainRes.BusinessLayer.Admin
                         break;
                     case 4:
                         DisplayAdminTrain();
-                        AdminOptions();
+                        UpdateTrain();
+                        //AdminOptions();
                         break;
                     case 5:
                         flag = false;
@@ -149,7 +150,7 @@ namespace TrainRes.BusinessLayer.Admin
                 updTrNo.TrainName = tname;
                 Rb.SaveChanges();
                 Console.WriteLine("Your Train Name Has been modified...");
-                AdminOptions();
+                //AdminOptions();
 
             }
             else

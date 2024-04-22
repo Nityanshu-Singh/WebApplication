@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Multiplication and Division</title>
+    <style type="text/css">
+        body {
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        1st Number: <input type="text" id="firstNumber"><br>
+        2nd Number: <input type="text" id="secondNumber"><br>
+        <input type="button" onClick="multiplyBy()" value="Multiply">
+        <input type="button" onClick="divideBy()" value="Divide">
+    </form>
+    <p>The Result is:<br><span id="result"></span></p>
+
+    <script>
+        function multiplyBy() {
+            const num1 = parseFloat(document.getElementById("firstNumber").value);
+            const num2 = parseFloat(document.getElementById("secondNumber").value);
+            document.getElementById("result").innerHTML = num1 * num2;
+        }
+
+        function divideBy() {
+            const num1 = parseFloat(document.getElementById("firstNumber").value);
+            const num2 = parseFloat(document.getElementById("secondNumber").value);
+            document.getElementById("result").innerHTML = num1 / num2;
+        }
+    </script>
+
+</body>
+</html>
