@@ -43,7 +43,11 @@ namespace TrainRes.BusinessLayer.Admin
 
             while (flag)
             {
-                Console.WriteLine("-----------WELCOME TO ADMIN MENU----------- ");
+                Console.WriteLine("\t\t\t\t********************************************");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t\t\t\t-----------WELCOME TO ADMIN MENU------------");
+                Console.ResetColor();
+                Console.WriteLine("\t\t\t\t********************************************");
                 Console.WriteLine("Press 1 for 'Add Train'");
                 Console.WriteLine("Press 2 for 'Modify Train'");
                 Console.WriteLine("Press 3 for 'Delete Train'");
@@ -63,8 +67,8 @@ namespace TrainRes.BusinessLayer.Admin
                         break;
                     case 4:
                         DisplayAdminTrain();
-                        UpdateTrain();
-                        //AdminOptions();
+                        //UpdateTrain();
+                        AdminOptions();
                         break;
                     case 5:
                         flag = false;

@@ -8,9 +8,9 @@ namespace TrainRes.BusinessLayer.User
 {
     class user
     {
+        static TrainReservationEntities1 Rb = new TrainReservationEntities1();
         static int tktprc = 0;
         static int trNo;
-        static TrainReservationEntities1 Rb = new TrainReservationEntities1();
         static string cls;
         static int ttltick;
         static int uid;
@@ -85,7 +85,7 @@ namespace TrainRes.BusinessLayer.User
             while (flag)
             {
                 Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\t\t      Welcome To User Menu     ");
                 Console.ResetColor();
                 Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -151,7 +151,7 @@ namespace TrainRes.BusinessLayer.User
 
             var activeTrains = Rb.TrainDetails.Where(t => t.TrainStatus == "Active").ToList();
             int count = 1;
-            Console.WriteLine($"S.no\tTrain No.\t\tTrain Name\t\t\tSource Station\t\tFinal Station");
+            Console.WriteLine($"S.no\tTrain No.\t\tTrain Name\t\tSource Station\t\tFinal Station");
             foreach (var train in activeTrains)
             {
                 Console.WriteLine($"{count}\t{train.TrainNo,-12}\t{train.TrainName,-25}\t{train.Source_Station,-20}\t{train.Final_Station,-20}");
@@ -168,6 +168,7 @@ namespace TrainRes.BusinessLayer.User
             TicketPrice tp = new TicketPrice();
             Booking_Details bt = new Booking_Details();
             UserDetail ud = new UserDetail();
+           
             //Console.WriteLine(us.user_id);
             ShowTrain();
 
@@ -191,9 +192,10 @@ namespace TrainRes.BusinessLayer.User
 
                 Rb.Booking_Details.Add(bt);
 
+                Rb.UpdateBooking(trNo, cls, ttltick);   // call procedure to update the seats...
+
                 Rb.SaveChanges();
 
-                Rb.UpdateBooking(trNo, cls, ttltick);   // call procedure to update the seats...
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\t\t\t\t----Your Booking Details----");
@@ -315,6 +317,9 @@ namespace TrainRes.BusinessLayer.User
                     Rb.UpdateCancelTicket(trno, classtype, nutic);
 
                     Rb.SaveChanges();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Your Ticket Has been Cancelled");
+                    Console.ResetColor();
                 }
                 else if (res == 'N' || res == 'n')
                 {

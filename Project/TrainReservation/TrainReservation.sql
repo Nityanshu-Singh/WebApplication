@@ -69,7 +69,7 @@ Total_Price float,
 NumberofTickets int not null,
 Booking_Date_Time date)
 
-drop table Booking_Details
+--drop table Booking_Details
 
 --Adding Column into Ticket Booking---------
 Alter Table Booking_Details add Booking_Status varchar(10) NOT NULL Default 'Booked'
@@ -85,7 +85,7 @@ TrainNo numeric(8) foreign key references TrainDetails(TrainNo),
 Cancel_Date_Time  date,
 Refund_Amount float,)
 
-Drop Table CancelTicket 
+--Drop Table CancelTicket 
 select * from CancelTicket
 
 --Stored Procedure---------
@@ -96,17 +96,17 @@ Create or Alter Procedure UpdateBooking ( @TrainNo numeric (8),
 
 as Begin
 
-if @Class = '1AC'
+if @Class = '1'
    Update Class_Type
    Set [1-AC]=[1-AC]-@SeatsBooked
    where TrainNo=@TrainNo;
 
-Else if @Class = '2AC'
+Else if @Class = '2'
    Update Class_Type
    Set [2-AC]=[2-AC]-@SeatsBooked
    where TrainNo=@TrainNo;
 
-Else if @Class = 'SL'
+Else if @Class = '3'
    Update Class_Type
    Set [SL]=[SL]-@SeatsBooked
    where TrainNo=@TrainNo;
@@ -120,18 +120,18 @@ Create or alter Procedure UpdateCancelTicket( @TrainNo numeric(8),
 as
 Begin
  
-    IF @Class = '1AC'
+    IF @Class = '1'
         update Class_Type
         set [1-AC] = [1-AC] + @SeatsBooked
-        where @TrainNo = @TrainNo;
-    Else if  @Class = '2AC'
+        where TrainNo = @TrainNo;
+    Else if  @Class = '2'
         Update class_Type
         set [2-AC] = [2-AC] + @SeatsBooked
-        where @TrainNo = @TrainNo;
-    else if @Class = 'SL'
+        where TrainNo = @TrainNo;
+    else if @Class = '3'
         update class_Type
         set [SL] = [SL] + @SeatsBooked
-        where @TrainNo = @TrainNo;
+        where TrainNo = @TrainNo;
 end
    
    -- Stored Procedure to Add seats and of New Train
@@ -156,3 +156,4 @@ create or alter PROC AddclassPrice(
 AS
 insert into TicketPrice(TrainNo,[1-AC-Price],[2-AC-Price],SL_Price) values
 (@TrainNo,@firstAcTicketPrice,@SecAcTicketPrice,@SLTicketPrice)
+
