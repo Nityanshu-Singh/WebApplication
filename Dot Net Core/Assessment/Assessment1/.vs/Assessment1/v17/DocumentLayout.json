@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\repository\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\repository\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\models\\northwindcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\models\\northwindcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\repository\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\repository\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\views\\order\\allorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\views\\order\\allorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\views\\order\\highestordercustomer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\views\\order\\highestordercustomer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\views\\order\\customerdetailsbyorderdate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\views\\order\\customerdetailsbyorderdate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\assessment1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\assessment1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|d:\\webapplication\\dot net core\\assessment\\assessment1\\assessment1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5FAD0734-99E6-47D9-8A91-B8FC29117AC1}|Assessment1\\Assessment1.csproj|solutionrelative:assessment1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HighestOrderCustomer.cshtml",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Views\\Order\\HighestOrderCustomer.cshtml",
+              "RelativeDocumentMoniker": "Assessment1\\Views\\Order\\HighestOrderCustomer.cshtml",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Views\\Order\\HighestOrderCustomer.cshtml",
+              "RelativeToolTip": "Assessment1\\Views\\Order\\HighestOrderCustomer.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-08T06:18:16.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AllOrders.cshtml",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Views\\Order\\AllOrders.cshtml",
+              "RelativeDocumentMoniker": "Assessment1\\Views\\Order\\AllOrders.cshtml",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Views\\Order\\AllOrders.cshtml",
+              "RelativeToolTip": "Assessment1\\Views\\Order\\AllOrders.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAwAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-08T06:15:51.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "Assessment1\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "Assessment1\\Controllers\\OrderController.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAswBEAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T05:47:00.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IOrderRepository.cs",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Repository\\IOrderRepository.cs",
+              "RelativeDocumentMoniker": "Assessment1\\Repository\\IOrderRepository.cs",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Repository\\IOrderRepository.cs",
+              "RelativeToolTip": "Assessment1\\Repository\\IOrderRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T04:50:32.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Repository\\OrderService.cs",
+              "RelativeDocumentMoniker": "Assessment1\\Repository\\OrderService.cs",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Repository\\OrderService.cs",
+              "RelativeToolTip": "Assessment1\\Repository\\OrderService.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAqwBQAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T04:49:58.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NorthWindContext.cs",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Models\\NorthWindContext.cs",
+              "RelativeDocumentMoniker": "Assessment1\\Models\\NorthWindContext.cs",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Models\\NorthWindContext.cs",
+              "RelativeToolTip": "Assessment1\\Models\\NorthWindContext.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAewEoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T04:42:23.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CustomerDetailsByOrderDate.cshtml",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Views\\Order\\CustomerDetailsByOrderDate.cshtml",
+              "RelativeDocumentMoniker": "Assessment1\\Views\\Order\\CustomerDetailsByOrderDate.cshtml",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Views\\Order\\CustomerDetailsByOrderDate.cshtml",
+              "RelativeToolTip": "Assessment1\\Views\\Order\\CustomerDetailsByOrderDate.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABYAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-08T06:26:41.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Program.cs",
+              "RelativeDocumentMoniker": "Assessment1\\Program.cs",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Program.cs",
+              "RelativeToolTip": "Assessment1\\Program.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAAA0AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T04:45:05.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Assessment1",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Assessment1.csproj",
+              "RelativeDocumentMoniker": "Assessment1\\Assessment1.csproj",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\Assessment1.csproj",
+              "RelativeToolTip": "Assessment1\\Assessment1.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-08T04:32:15.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\appsettings.json",
+              "RelativeDocumentMoniker": "Assessment1\\appsettings.json",
+              "ToolTip": "D:\\WebApplication\\Dot Net Core\\Assessment\\Assessment1\\Assessment1\\appsettings.json",
+              "RelativeToolTip": "Assessment1\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-08T04:28:20.487Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
